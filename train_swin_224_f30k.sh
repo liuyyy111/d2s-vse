@@ -1,0 +1,3 @@
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --nproc_per_node=2 --master_port=25901  train.py --dataset f30k --multi_gpu 1 --logger_name runs/f30k/swin_224/pretrain --img_res 384 --batch_size 64 --vit_type microsoft/swin-base-patch4-window7-224-in22k --embed_size 512 --pretrain 
+
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --nproc_per_node=2 --master_port=25901  train.py --dataset f30k --multi_gpu 1 --logger_name runs/f30k/swin_224/distill1 --img_res 384 --batch_size 64 --vit_type microsoft/swin-base-patch4-window7-224-in22k --embed_size 512 --distill --weight_path runs/f30k/swin_224/pretrain/model_best.pth --use_decoder --num_tokens 100   

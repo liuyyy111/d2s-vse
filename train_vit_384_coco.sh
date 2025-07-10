@@ -1,0 +1,3 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.run --nproc_per_node=4 --master_port=25901  train.py --dataset coco --multi_gpu 1 --logger_name runs/coco/vit_384/pretrain --img_res 480 --batch_size 32 --vit_type google/vit-base-patch16-384-in21k --embed_size 512 --pretrain 
+
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.run --nproc_per_node=4 --master_port=25901  train.py --dataset coco --multi_gpu 1 --logger_name runs/coco/vit_384/distill1 --img_res 480 --batch_size 32 --vit_type google/vit-base-patch16-384-in21k --embed_size 512 --distill --weight_path runs/coco/vit_384/pretrain/model_best.pth --use_decoder --num_tokens 100   
