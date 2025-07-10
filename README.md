@@ -89,7 +89,7 @@ In the **finetuning** stage, we set the `weight_path` parameter to `runs/f30k/vi
 ```
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.run --nproc_per_node=2 --master_port=25901  train.py --dataset f30k --multi_gpu 1 --logger_name runs/f30k/vit_224/distill --img_res 384 --batch_size 64 --vit_type vit --embed_size 512 --distill --weight_path runs/f30k/vit_224/pretrain/model_best.pth --use_decoder --num_tokens 100 
 ```   
-We have compiled all the training scripts, such as `train_vit_224_f30k.sh`, `train_swin_224_f30k.sh`, and others.
+We have compiled all the training scripts, such as `train_vit_224_f30k.sh`, `train_swin_224_f30k.sh`, and others. You can simply run `train_MODELNAME_DATASET.sh` to train both stages together.
 
 
 ## Evaluation
