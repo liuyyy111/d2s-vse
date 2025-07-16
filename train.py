@@ -196,7 +196,8 @@ def train(opt, train_loader, model, model_without_ddp, optimizer, epoch, scaler)
     if utils.is_main_process() and epoch == 0:
         logger.info('image encoder trainable parameters: {}M'.format(count_params(model_without_ddp.img_enc)))
         logger.info('txt encoder trainable parameters: {}M'.format(count_params(model_without_ddp.txt_enc)))
-        logger.info('prompt decoder trainable parameters: {}M'.format(count_params(model_without_ddp.prompt_learner)))
+        if opt.distill:
+            logger.info('prompt decoder trainable parameters: {}M'.format(count_params(model_without_ddp.prompt_learner)))
         logger.info('criterion trainable parameters: {}M'.format(count_params(model_without_ddp.criterion)))
 
     n_batch = len(train_loader) 
