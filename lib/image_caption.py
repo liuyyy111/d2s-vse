@@ -162,10 +162,7 @@ class RawImageDataset(data.Dataset):
 
         im = im_in.astype(np.float32, copy=True)
 
-        if self.opt.img_res == 224:
-            target_size = 384
-        else:
-            target_size = 480
+        target_size = self.opt.img_res
 
         # 2. Random crop when in training mode, elsewise just skip
         if self.train:
