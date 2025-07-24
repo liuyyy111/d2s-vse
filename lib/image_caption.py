@@ -78,7 +78,7 @@ class RawImageDataset(data.Dataset):
                         self.captions.append(json_obj['text'])  # 添加到列表
                     except json.JSONDecodeError as e:
                         print(f"Error parsing line: {e}")
-        if self.opt.distill:
+        if self.opt.distill and self.train:
             self.long_caption = []
             # 打开文件，逐行读取
             with open(os.path.join(loc, f'{opt.dataset}_{self.split}.jsonl'), "r", encoding="utf-8") as f:
@@ -121,15 +121,13 @@ class RawImageDataset(data.Dataset):
         if self.opt.distill:
             if self.train:
                 long_caption = self.long_caption[img_index]
-            else:
-                long_caption = self.long_caption[index // 5]
 
-            if 'clip' in self.opt.vit_type:
-                long_caption_tokens = self.tokenizer.basic_tokenizer.tokenize(long_caption)  
-                long_target = process_caption_clip(self.tokenizer, long_caption_tokens, self.train, size_augment=self.opt.size_augment)
-            else:
-                long_caption_tokens = self.tokenizer.basic_tokenizer.tokenize(long_caption)  
-                long_target = process_caption_bert(self.tokenizer, long_caption_tokens, self.train, size_augment=self.opt.size_augment)
+                if 'clip' in self.opt.vit_type:
+                    long_caption_tokens = self.tokenizer.basic_tokenizer.tokenize(long_caption)  
+                    long_target = process_caption_clip(self.tokenizer, long_caption_tokens, self.train, size_augment=self.opt.size_augment)
+                else:
+                    long_caption_tokens = self.tokenizer.basic_tokenizer.tokenize(long_caption)  
+                    long_target = process_caption_bert(self.tokenizer, long_caption_tokens, self.train, size_augment=self.opt.size_augment)
         
         
         # image_id = self.images[img_index]
@@ -144,7 +142,7 @@ class RawImageDataset(data.Dataset):
         image = torch.Tensor(processed_image)
         image = image.permute(2, 0, 1)            
 
-        if self.opt.distill:
+        if self.opt.distill and self.train:
             return image, target, long_target, index, img_index
         return image, target, index, img_index
 
