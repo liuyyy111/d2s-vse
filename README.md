@@ -1,6 +1,6 @@
 # Aligning Information Capacity Between Vision and Language via Dense-to-Sparse Feature Distillation for Image-Text Matching
 
-The official codes for our paper "Aligning Information Capacity Between Vision and Language via Dense-to-Sparse Feature Distillation for Image-Text Matching" [[arxiv](https://arxiv.org/pdf/2503.14953?)], which is accepted by the International Conference on Computer Vision, ICCV 2025.
+The official codes for our paper "Aligning Information Capacity Between Vision and Language via Dense-to-Sparse Feature Distillation for Image-Text Matching" [[arxiv](https://arxiv.org/pdf/2503.14953)], which is accepted by the International Conference on Computer Vision, ICCV 2025.
 We referred to the implementations of [VSE++](https://github.com/fartashf/vsepp), [GPO](https://github.com/woodfrog/vse_infty), and [LAPS](https://github.com/CrossmodalGroup/LAPS) to build up the repository. 
 
 
