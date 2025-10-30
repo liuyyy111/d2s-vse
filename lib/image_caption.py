@@ -70,7 +70,7 @@ class RawImageDataset(data.Dataset):
             self.captions = []
             # 打开文件，逐行读取
             # with open(os.path.join(loc, f'{opt.dataset}_{self.split}_temp{opt.temp}.jsonl'), "r", encoding="utf-8") as f:
-            with open(os.path.join(loc, f'{opt.dataset}_{self.split}_short200.jsonl'), "r", encoding="utf-8") as f:
+            with open(os.path.join(loc, f'{opt.dataset}_{self.split}.jsonl'), "r", encoding="utf-8") as f:
                 for line in f:
                     try:
                         # 解析每一行为 JSON 对象
